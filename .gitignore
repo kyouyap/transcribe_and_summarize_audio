@@ -1,0 +1,6 @@
+# csvとwavデータを無視する  
+**.csv
+**.wav
+**.pyc
+output**.txt
+.DS_store
