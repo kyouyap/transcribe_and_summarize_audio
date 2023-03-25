@@ -11,7 +11,7 @@ def parse_transcription_csv(input_path, output_path):
     with open(input_path, 'r') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
-            line = ''.join(row)  # 入力行を連結します。
+            line = ''.join(row) 
             match = pattern.match(line)
             if match:
                 start_time = match.group(1)
@@ -24,10 +24,8 @@ def parse_transcription_csv(input_path, output_path):
                     'text': text
                 })
 
-    # print(parsed_data)
     df = pd.DataFrame(parsed_data)
     df.to_csv(output_path, index=False)
-    # print(df)
     print("done")
     return df
 
