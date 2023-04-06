@@ -92,7 +92,6 @@ class App(QMainWindow):
         self.update_buttons_status()
         transcription = transcribe(
             self.recorder.output_file,
-            model_name=self.model_name_combobox.currentText(),
             is_local_whisper=self.is_local_whisper_checkbox.isChecked()
         )
 
