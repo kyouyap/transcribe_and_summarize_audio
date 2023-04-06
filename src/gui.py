@@ -1,10 +1,8 @@
-import sys
-import os
-
-sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
-
+from pydub import AudioSegment
+from .transcribe import transcribe
+from .summary import summary
+from .record import Recorder
 from PyQt6.QtWidgets import (
-    QApplication,
     QMainWindow,
     QMessageBox,
     QPushButton,
@@ -16,11 +14,11 @@ from PyQt6.QtWidgets import (
     QCheckBox,
     QComboBox,
 )
+import sys
+import os
 
-from .record import Recorder
-from .summary import summary
-from .transcribe import transcribe
-from pydub import AudioSegment
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+
 
 class App(QMainWindow):
     def __init__(self):
@@ -97,7 +95,8 @@ class App(QMainWindow):
             is_local_whisper=self.is_local_whisper_checkbox.isChecked()
         )
 
-        text_summary = summary(transcription, model_name=self.model_name_combobox.currentText())
+        text_summary = summary(
+            transcription, model_name=self.model_name_combobox.currentText())
 
         QMessageBox.about(self, "Summary", text_summary)
 
@@ -117,8 +116,7 @@ class App(QMainWindow):
             is_local_whisper=self.is_local_whisper_checkbox.isChecked()
         )
 
-        text_summary = summary(transcription, model_name=self.model_name_combobox.currentText())
+        text_summary = summary(
+            transcription, model_name=self.model_name_combobox.currentText())
 
         QMessageBox.about(self, "Summary", text_summary)
-
-
