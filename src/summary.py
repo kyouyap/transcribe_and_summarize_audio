@@ -1,27 +1,50 @@
 import openai
 import os
-from datetime import datetime
-import pandas as pd
-from parse import parse_transcription_csv
 
 
-openai.api_key = os.environ["OPENAI_API_KEY"]
-
-
-def summary(input_text_path, output_result_path):
-
-    model_name = "gpt-4"
+def summary(transcription,model_name="gpt-3.5-turbo"):
+    openai.api_key = os.environ["OPENAI_API_KEY"]
+    model_name = "gpt-3.5-turbo"
     messages = []
-    start_question = f"あなたは、議事録を要約して、まとめるアシスタントです。議事録のデータが届くので、適切に要約して下さい。ただし、音声認識で文字起こしをしたデータなので文字起こしに誤りがあったり（漢字などは音を読み、文字起こしの誤りがあると思われれば修正する）、どなたが発話しているか分かりにくいという問題があることを踏まえて下さい。出力のフォーマットは下記でお願いします。\n\n結論：\nconclusion\n\n要点：\n・example1\n・example2\n・example3\n要点があれば続ける\n\n要約：\n要約文章"
-    df = parse_transcription_csv(input_text_path, input_text_path.replace(
-        "text", "csv").replace(".txt", ".csv"))
-    df = df[df['end_time'].str.split(':').apply(lambda x: int(x[0])*3600+int(x[1])*60+float(
-        x[2])) - df['start_time'].str.split(':').apply(lambda x: int(x[0])*3600+int(x[1])*60+float(x[2])) > 1]
+    start_question = "あなたは、議事録を要約して、まとめるアシスタントです。議事録のデータが届くので、適切に要約して下さい。出力のフォーマットは下記でお願いします。"
 
+    start_question += """
+# 議事録
+
+## 議題1: タイトル1
+
+### 内容
+- 点1
+- 点2
+- 点3
+
+### 決定事項
+- 決定1
+- 決定2
+
+### 議論の要約
+- 内容
+
+## 議題2: タイトル1
+
+### 内容
+- 点1
+- 点2
+- 点3
+
+### 決定事項
+- 決定1
+- 決定2
+
+### 議論の要約
+- 内容
+
+以下議題の数だけ繰り返す
+    """
     messages.append({"role": "system", "content": start_question})
-    for index, row in df.iterrows():
-        messages.append(
-            {"role": "user", "content": f"{row['text']}"})
+
+    messages.append(
+        {"role": "user", "content": f"{transcription}"})
 
     completions = openai.ChatCompletion.create(
         model=model_name,
@@ -31,8 +54,8 @@ def summary(input_text_path, output_result_path):
         stop=None,
         temperature=0,
     )
+    text = ""
     for choice in completions.choices:
         print(choice.message.content)
-    with open(output_result_path, mode="w") as f:
-        for choice in completions.choices:
-            f.write(choice.message.content)
+        text += choice.message.content+"\n"  # noqa
+    return text
