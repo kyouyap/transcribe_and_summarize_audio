@@ -34,7 +34,6 @@ export CFLAGS="-I/opt/homebrew/include"
 export LDFLAGS="-L/opt/homebrew/lib"
 ```
 
-
 ## 使用法
 
 1. 必要なパッケージをインストールします。
