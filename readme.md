@@ -34,9 +34,6 @@ export CFLAGS="-I/opt/homebrew/include"
 export LDFLAGS="-L/opt/homebrew/lib"
 ```
 
-5. OPENAI_API_KEY 環境変数に OpenAI API キーを設定します。
-```bash
-```
 
 ## 使用法
 
