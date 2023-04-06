@@ -1,6 +1,8 @@
 import sys
 import os
 
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -15,9 +17,9 @@ from PyQt6.QtWidgets import (
     QComboBox,
 )
 
-from record import Recorder
-from summary import summary
-from transcribe import transcribe
+from .record import Recorder
+from .summary import summary
+from .transcribe import transcribe
 from pydub import AudioSegment
 
 class App(QMainWindow):
@@ -120,8 +122,3 @@ class App(QMainWindow):
         QMessageBox.about(self, "Summary", text_summary)
 
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    ex = App()
-    ex.show()
-    sys.exit(app.exec())
