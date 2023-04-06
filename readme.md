@@ -36,7 +36,6 @@ export LDFLAGS="-L/opt/homebrew/lib"
 
 5. OPENAI_API_KEY 環境変数に OpenAI API キーを設定します。
 ```bash
-export OPENAI_API_KEY='your_api_key_here'
 ```
 
 ## 使用法
@@ -48,24 +47,5 @@ pip install -r requirements.txt
 
 2. コマンドラインから次のようにプログラムを実行します。
 ```bash
-python main.py [-i INPUT_FILE] [-m MODEL_NAME] [-t TEXT_FILE]
+python src/gui.py
 ```
-- `-i` または `--input`: 音声ファイルを指定します。指定しない場合、プログラム内で録音が開始されます。
-- `-m` または `--model`: 使用するモデル名を指定します。初期値は "base" です。
-- `-t` または `--text`: 文字起こしされたテキストファイルを指定します。指定しない場合、新たに作成します。
-
-### 使用例
-
-#### 既存の音声ファイルを処理する場合
-
-```bash
-python main.py -i audio/existing_audio.wav -m base
-```
-
-#### 新規録音を行い、処理する場合
-
-```bash
-python main.py -m base
-```
-
-プログラム内で録音が開始されます。録音を終了するには `q` キーを押してください。録音された音声は処理され、テキストファイルが生成されます。
