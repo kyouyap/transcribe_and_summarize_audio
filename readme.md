@@ -44,5 +44,5 @@ pip install -r requirements.txt
 
 2. コマンドラインから次のようにプログラムを実行します。
 ```bash
-python src/gui.py
+python main.py
 ```
