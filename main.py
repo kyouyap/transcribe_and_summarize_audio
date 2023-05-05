@@ -1,3 +1,4 @@
+
 import sys
 import os
 import subprocess
@@ -96,6 +97,7 @@ if __name__ == "__main__":
     prepare_environment()
     from src.gui import App
     from PyQt6.QtWidgets import QApplication
+
     app = QApplication(sys.argv)
     ex = App()
     ex.show()
