@@ -19,6 +19,11 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
+from .record import Recorder
+from .summary import summary
+from .transcribe import transcribe
+from pydub import AudioSegment
+
 
 class App(QMainWindow):
     def __init__(self):
