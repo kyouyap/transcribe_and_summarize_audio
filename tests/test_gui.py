@@ -9,6 +9,7 @@ from PyQt6.QtTest import QTest
 from src.gui import App
 import time
 
+
 class TestApp(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -20,7 +21,6 @@ class TestApp(unittest.TestCase):
 
     def setUp(self):
         self.ex = App()
-
 
     def test_set_openai_api_key(self):
         test_key = "test_key"
@@ -44,7 +44,7 @@ class TestApp(unittest.TestCase):
     #     with patch("src.gui.transcribe") as mock_transcribe, \
     #             patch("src.gui.summary") as mock_summary, \
     #             patch("PyQt6.QtWidgets.QMessageBox.about") as mock_about:
-    #         assert self.ex.stop_btn.isEnabled() 
+    #         assert self.ex.stop_btn.isEnabled()
     #         self.ex.stop_btn.click()
     #         QTest.qWait(100)
     #         instance.stop_recording.assert_called_once()

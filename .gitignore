@@ -7,3 +7,5 @@ output**.txt
 whisper.cpp/
 venv
 venv/*
+dist/*
+build/*

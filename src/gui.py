@@ -15,9 +15,9 @@ from PyQt6.QtWidgets import (
     QComboBox,
 )
 
-from record import Recorder
-from summary import summary
-from transcribe import transcribe
+from .record import Recorder
+from .summary import summary
+from .transcribe import transcribe
 from pydub import AudioSegment
 
 class App(QMainWindow):
